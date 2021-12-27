@@ -1,0 +1,30 @@
+#R 회귀모델 이용하여 오존농도 예측 
+library(mlbench)
+data("Ozone")
+head(Ozone) #Ozone 앞부분 
+plot(V4~V8, data=Ozone) #V4은 종속변수 V8는 독립변수
+
+model <- lm(V4~V8, Ozone) #선형회귀 모델
+model
+coef(model) [1] #b
+coef(model) [2] #W
+
+#기온이 30일때
+V8=30
+V4 = 0.4272 * V8 - 14.8419
+print(V4)
+
+#기온이 40일때
+V8=40
+V4 = 0.4272 * V8 - 14.8419
+print(V4)
+
+#기온이 50일때
+V8=50
+V4 = 0.4272 * V8 - 14.8419
+print(V4)
+
+plot(V4~V8, data=Ozone)
+abline(coef(model)) #회귀식을 산점도에 표현 
+com=Ozone$V4~Ozone$V8
+pairs(com,main="V4 vs V8") #V4와 V8의 상관관계 파악 
